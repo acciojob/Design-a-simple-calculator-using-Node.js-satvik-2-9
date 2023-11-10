@@ -1,31 +1,49 @@
-// Calculator program in Node.js
+const readline = require('readline-sync');
 
-// Function to perform addition
 function add(num1, num2) {
-  // TODO: Perform addition operation here
+    return num1 + num2;
 }
 
-// Function to perform subtraction
 function subtract(num1, num2) {
-  // TODO: Perform subtraction operation here
+    return num1 - num2;
 }
 
-// Function to perform multiplication
 function multiply(num1, num2) {
-  // TODO: Perform multiplication operation here
+    return num1 * num2;
 }
 
-// Function to perform division
 function divide(num1, num2) {
-  // TODO: Perform division operation here
+    if (num2 === 0) {
+        return 'Cannot divide by zero';
+    }
+    return num1 / num2;
 }
 
-// Main program
 function calculator() {
-  // TODO: Get user input for numbers and operation
-  // TODO: Call the appropriate function based on the operation
-  // TODO: Output the result
+    const num1 = parseFloat(readline.question('Enter the first number: '));
+    const num2 = parseFloat(readline.question('Enter the second number: '));
+    const operation = readline.question('Enter the operation (+, -, *, /): ');
+
+    let result;
+    switch (operation) {
+        case '+':
+            result = add(num1, num2);
+            break;
+        case '-':
+            result = subtract(num1, num2);
+            break;
+        case '*':
+            result = multiply(num1, num2);
+            break;
+        case '/':
+            result = divide(num1, num2);
+            break;
+        default:
+            result = 'Invalid operation';
+            break;
+    }
+
+    console.log(`Result: ${result}`);
 }
 
-// Invoke the calculator function to start the program
-calculator();
+module.exports = { add, subtract, multiply, divide }; // Export for testing purposes
